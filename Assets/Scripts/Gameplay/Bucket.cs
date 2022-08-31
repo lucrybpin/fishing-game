@@ -10,6 +10,8 @@ public class Bucket : MonoBehaviour
     [SerializeField] List<Fish> fishes = new List<Fish>();
     [SerializeField] Transform fishStackPosition;
 
+    public List<Fish> Fishes { get => fishes; }
+
     private void Start ()
     {
         SyncWatchables();
@@ -17,7 +19,9 @@ public class Bucket : MonoBehaviour
 
     public void AddFish(Fish newFish)
     {
+        newFish.InSea = false;
         fishes.Add( newFish );
+        newFish.transform.SetParent( this.transform );
         newFish.transform.position = this.fishStackPosition.position;
         SyncWatchables();
     }
@@ -31,5 +35,13 @@ public class Bucket : MonoBehaviour
     public bool IsFull()
     {
         return fishes.Count >= bucketMaxSize;
+    }
+
+    public void Clear()
+    {
+        foreach (Fish fish in fishes)
+            Destroy( fish.gameObject );
+        fishes.Clear();
+        SyncWatchables();
     }
 }

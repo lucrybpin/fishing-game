@@ -71,7 +71,6 @@ public class FishHook : MonoBehaviour {
         }
 
         bucket.AddFish( this.fish );
-        this.fish.transform.SetParent( null );
         this.fish = null;
     }
 

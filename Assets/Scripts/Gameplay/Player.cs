@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     float xRotation = 0;
     float yRotation = 0;
 
-    [SerializeField] Rigidbody rigidbody;
+    [SerializeField] new Rigidbody rigidbody;
 
     [SerializeField] float speed = 7f;
 

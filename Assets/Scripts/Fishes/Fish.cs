@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
-
+    [SerializeField] bool inSea;
     [SerializeField] Vector3 direction;
     [SerializeField] float speed;
+
+    public bool InSea { get => inSea; set => inSea =  value ; }
 
     public enum FishRotation {
         left,
@@ -14,8 +16,9 @@ public class Fish : MonoBehaviour
     }
 
 
-    public void Setup(float speed, FishRotation rotation = FishRotation.left)
+    public void Setup(float speed, FishRotation rotation = FishRotation.left, bool inSea = true)
     {
+        this.inSea = inSea;
         this.speed = speed;
         switch (rotation)
         {
@@ -41,6 +44,9 @@ public class Fish : MonoBehaviour
 
     private void DestroyOnBoundaries ()
     {
+        if (!inSea)
+            return;
+
         if (transform.position.x < -25f || transform.position.x > 25f)
             Destroy( gameObject );
     }
