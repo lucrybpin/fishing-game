@@ -1208,7 +1208,6 @@ Transform:
   m_Children:
   - {fileID: 1356086199}
   - {fileID: 1679930768}
-  - {fileID: 1065583550}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2614,37 +2613,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036915935}
   m_CullTransparentMesh: 1
---- !u!1 &1065583549
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1065583550}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1065583550
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065583549}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 388169117}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1154821661
 GameObject:
   m_ObjectHideFlags: 0
@@ -3787,8 +3755,8 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415431561}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
+  m_Alpha: 0
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &1546776815
@@ -4526,6 +4494,7 @@ Transform:
   - {fileID: 1341103564}
   - {fileID: 740606058}
   - {fileID: 23620732}
+  - {fileID: 2081739496}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4785,6 +4754,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83d7c79908bc1b43814d5e6c0e374da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSave:
+    id: 0
+    bucketCurrent: 0
+    bucketMax: 2
+    currentBucketFishes:
+    - typeName: Fish
+    coins: 0
+    lineCurrent: 0
+    lineMax: 2
   watchableCoins: {fileID: 11400000, guid: 93ac897172cacbe4db45270c359d9fec, type: 2}
   watchableBucketcurrent: {fileID: 11400000, guid: 98f4d0437bd3266409b09723ede5d446, type: 2}
   watchableBucketMax: {fileID: 11400000, guid: fe82260c122e5c947bd71002b595dd22, type: 2}
@@ -4810,13 +4788,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081739493}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1890386370}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2146710573
 GameObject:

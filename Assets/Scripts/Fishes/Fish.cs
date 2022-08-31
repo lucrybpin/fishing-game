@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Fish : MonoBehaviour
 {
-    [SerializeField] bool inSea;
-    [SerializeField] Vector3 direction;
-    [SerializeField] float speed;
+    [SerializeField] bool inSea = false;
+    [SerializeField] Vector3 direction = Vector3.zero;
+    [SerializeField] float speed = 0;
 
     public bool InSea { get => inSea; set => inSea =  value ; }
 

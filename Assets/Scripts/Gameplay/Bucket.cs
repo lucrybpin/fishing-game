@@ -10,7 +10,7 @@ public class Bucket : MonoBehaviour
     [SerializeField] List<Fish> fishes = new List<Fish>();
     [SerializeField] Transform fishStackPosition;
 
-    public List<Fish> Fishes { get => fishes; }
+    public List<Fish> Fishes { get => fishes; set => fishes =  value ; }
 
     private void Start ()
     {
@@ -34,6 +34,7 @@ public class Bucket : MonoBehaviour
 
     public bool IsFull()
     {
+        //fishesList.Value.Count
         return fishes.Count >= bucketMaxSize;
     }
 
