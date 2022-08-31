@@ -13,10 +13,15 @@ public class FishHook : MonoBehaviour {
     float verticalSpeed;
     [SerializeField] float fishiReleaseLevel = 1.25f;
 
-    [SerializeField] [Range( 2, 150 )] int lineLimit = 10;
     [SerializeField] WatchableFloat lineCurrent;
     [SerializeField] WatchableFloat lineMax;
-    
+
+    GameManager gameManager;
+
+    private void Start ()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
 
     void Update ()
@@ -40,9 +45,8 @@ public class FishHook : MonoBehaviour {
     private void SyncWatchables ()
     {
         Vector3 position = transform.position;
-        position.y = Mathf.Clamp( transform.position.y, -lineLimit, 0 );
+        position.y = Mathf.Clamp( transform.position.y, -gameManager.DataManager.LineMax, 0 );
         lineCurrent.Value = -position.y;
-        lineMax.Value = lineLimit;
     }
 
     private bool IsAtReleaseLevel ()
