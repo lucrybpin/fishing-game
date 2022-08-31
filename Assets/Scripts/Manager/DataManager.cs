@@ -32,6 +32,11 @@ public class DataManager : MonoBehaviour
     public void LoadSave()
     {
         currentSave = SaveGame.Load<GameSave>( "save_0" );
+        watchableCoins.Value = currentSave.coins;
+        watchableBucketcurrent.Value = currentSave.bucketCurrent;
+        watchableBucketMax.Value = currentSave.bucketMax;
+        watchableLineCurrent.Value = currentSave.lineCurrent;
+        watchableLineMax.Value = currentSave.lineMax;
         FindObjectOfType<Bucket>().Fishes = DataManager.FishSaveDataToFish( currentSave.currentBucketFishes );
     }
 

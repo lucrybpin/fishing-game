@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
 
     public void AddCoin (int amount)
     {
-        if (amount <= 0)
+        if (amount < 0)
         {
             Debug.Log( "Trying to add negative amount of coins" );
             return;
