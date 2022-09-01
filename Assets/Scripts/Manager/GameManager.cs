@@ -8,12 +8,17 @@ public class GameManager : MonoBehaviour {
 
     public DataManager DataManager { get => dataManager; }
 
+    private void Awake ()
+    {
+        GamePresetsData.Setup();
+    }
+
     private void Start ()
     {
         dataManager = GetComponent<DataManager>();
     }
 
-    public void AddCoin (int amount)
+    public void AddCoins (int amount)
     {
         if (amount < 0)
         {
@@ -23,13 +28,29 @@ public class GameManager : MonoBehaviour {
         dataManager.PlayerCoins = dataManager.PlayerCoins + amount;
     }
 
-    public void SetLineMax (float newLineMax)
+    public void SubtractCoins (int amount)
     {
-        if (newLineMax <= 0)
+        if (amount < 0)
         {
-            Debug.Log( "Trying to add negative line range" );
+            Debug.Log( "Trying to subtract negative amount of coins" );
             return;
         }
-        dataManager.LineMax = newLineMax;
+        if (dataManager.PlayerCoins - amount < 0)
+        {
+            Debug.Log( "Trying to subtract amount greater than available coins" );
+            return;
+        }
+        dataManager.PlayerCoins = dataManager.PlayerCoins - amount;
+    }
+
+    public void SetLineLevel(int newLevel)
+    {
+        if (newLevel < 0)
+        {
+            Debug.Log( "Trying to set negative line level" );
+            return;
+        }
+        dataManager.LineLevel = newLevel;
+        dataManager.LineMax = GamePresetsData.GetLineLimitByUpgradeLevel( newLevel );
     }
 }

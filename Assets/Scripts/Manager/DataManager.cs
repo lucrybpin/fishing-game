@@ -11,8 +11,28 @@ public class DataManager : MonoBehaviour
     [SerializeField] WatchableInt watchableCoins;
     [SerializeField] WatchableInt watchableBucketcurrent;
     [SerializeField] WatchableInt watchableBucketMax;
+    [SerializeField] WatchableInt watchableLineLevel;
     [SerializeField] WatchableFloat watchableLineCurrent;
     [SerializeField] WatchableFloat watchableLineMax;
+
+    private void Start ()
+    {
+        //LoadSave();
+    }
+
+    [Button( "Clear Save" )]
+    public void ClearSave ()
+    {
+        currentSave = new GameSave();
+        currentSave.coins = 0;
+        currentSave.bucketCurrent = 0;
+        currentSave.bucketMax = 2;
+        currentSave.lineUpgradeLevel = 0;
+        currentSave.lineCurrent = 0;
+        currentSave.lineMax = 2;
+        currentSave.currentBucketFishes = new List<FishSaveData>();
+        SaveGame.Save<GameSave>( "save_0", currentSave );
+    }
 
 
     [Button("Save Game")]
@@ -22,6 +42,7 @@ public class DataManager : MonoBehaviour
         currentSave.coins = PlayerCoins;
         currentSave.bucketCurrent = BucketCurrent;
         currentSave.bucketMax = BucketMax;
+        currentSave.lineUpgradeLevel = LineLevel;
         currentSave.lineCurrent = LineCurrent;
         currentSave.lineMax = LineMax;
         currentSave.currentBucketFishes = FishesToSaveData( FindObjectOfType<Bucket>().Fishes );
@@ -35,6 +56,7 @@ public class DataManager : MonoBehaviour
         watchableCoins.Value = currentSave.coins;
         watchableBucketcurrent.Value = currentSave.bucketCurrent;
         watchableBucketMax.Value = currentSave.bucketMax;
+        watchableLineLevel.Value = currentSave.lineUpgradeLevel;
         watchableLineCurrent.Value = currentSave.lineCurrent;
         watchableLineMax.Value = currentSave.lineMax;
         FindObjectOfType<Bucket>().Fishes = DataManager.FishSaveDataToFish( currentSave.currentBucketFishes );
@@ -91,6 +113,12 @@ public class DataManager : MonoBehaviour
     {
         get { return watchableBucketMax.Value; }
         set { watchableBucketMax.Value = value; }
+    }
+
+    public int LineLevel
+    {
+        get { return watchableLineLevel.Value; }
+        set { watchableLineLevel.Value = value; }
     }
 
     public float LineCurrent

@@ -8,6 +8,7 @@ public class UIShop : MonoBehaviour {
 
     GameManager gameManager;
     Dictionary<Type, int> fishValues = new Dictionary<Type, int>();
+    
 
     private void Start ()
     {
@@ -33,7 +34,7 @@ public class UIShop : MonoBehaviour {
         }
         bucket.Clear();
 
-        gameManager.AddCoin( totalGold );
+        gameManager.AddCoins( totalGold );
     }
 
     [Button( "Show" )]
