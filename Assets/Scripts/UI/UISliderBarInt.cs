@@ -13,7 +13,7 @@ public class UISliderBarInt : MonoBehaviour
     private void LateUpdate ()
     {
         Vector3 currentScale = fill.localScale;
-        float proportion = currentValue.Value / maxValue.Value;
+        float proportion = (float)currentValue.Value / maxValue.Value;
         fill.localScale = new Vector3( proportion, currentScale.y, currentScale.z );
         text.text = $"[Bucket] [{currentValue.Value}/{maxValue.Value}]";
     }
