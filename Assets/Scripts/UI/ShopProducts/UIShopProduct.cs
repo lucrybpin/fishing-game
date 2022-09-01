@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using NaughtyAttributes;
 
 public class UIShopProduct : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class UIShopProduct : MonoBehaviour
 
     
     [SerializeField] protected TMP_Text text;
-    [SerializeField] protected WatchableInt playerCoins;
+    [SerializeField] [Required] protected WatchableInt playerCoins;
     [SerializeField] protected Button button;
     [SerializeField] protected Image image;
 

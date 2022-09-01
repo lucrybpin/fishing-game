@@ -1,21 +1,19 @@
 using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class UIShopProductLine : UIShopProduct {
+public class UIShopProductBucket : UIShopProduct {
 
-    [Header( "UI Shop Product Line" )]
+    [Header( "UI Shop Product Bucket" )]
     [SerializeField] [Required] int level;
-    [SerializeField] [Required] private WatchableInt currentLineLevel;
+    [SerializeField] [Required] private WatchableInt currentBucketLevel;
 
     protected override void Start ()
     {
         base.Start();
-        int price = GamePresetsData.GetLinePriceByUpgradeLevel( level );
-        int limit = GamePresetsData.GetLineLimitByUpgradeLevel( level );
+        int price = GamePresetsData.GetBucketPriceByUpgradeLevel( level );
+        int limit = GamePresetsData.GetBucketSizeByUpgradeLevel( level );
 
-        this.prefix = $"Level {level} ({limit}m) - ";
+        this.prefix = $"Level {level} ({limit}un) - ";
         this.price = price;
         this.posfix = " coins";
     }
@@ -23,14 +21,14 @@ public class UIShopProductLine : UIShopProduct {
     protected override void DisableConditions ()
     {
         base.DisableConditions();
-        if (currentLineLevel.Value >= this.level)
+        if (currentBucketLevel.Value >= this.level)
             button.interactable = false;
     }
 
     protected override void FillConditions ()
     {
         base.FillConditions();
-        if (currentLineLevel.Value == this.level)
+        if (currentBucketLevel.Value == this.level)
             this.image.color = Color.blue;
         else
             this.image.color = Color.white;
@@ -39,6 +37,6 @@ public class UIShopProductLine : UIShopProduct {
     protected override void OnBuy ()
     {
         base.OnBuy();
-        FindObjectOfType<GameManager>().SetLineLevel( this.level );
+        FindObjectOfType<GameManager>().SetBucketLevel( this.level );
     }
 }

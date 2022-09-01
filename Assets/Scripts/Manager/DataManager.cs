@@ -4,11 +4,11 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 using System;
 
-public class DataManager : MonoBehaviour
-{
+public class DataManager : MonoBehaviour {
     [SerializeField] GameSave currentSave;
 
     [SerializeField] WatchableInt watchableCoins;
+    [SerializeField] WatchableInt watchableBucketLevel;
     [SerializeField] WatchableInt watchableBucketcurrent;
     [SerializeField] WatchableInt watchableBucketMax;
     [SerializeField] WatchableInt watchableLineLevel;
@@ -20,43 +20,46 @@ public class DataManager : MonoBehaviour
         //LoadSave();
     }
 
-    [Button( "Clear Save" )]
-    public void ClearSave ()
+    [Button( "Clear Current Save" )]
+    public void ClearCurrentSave ()
     {
         currentSave = new GameSave();
         currentSave.coins = 0;
+        currentSave.bucketLevel = 0;
         currentSave.bucketCurrent = 0;
-        currentSave.bucketMax = 2;
-        currentSave.lineUpgradeLevel = 0;
+        currentSave.bucketMax = GamePresetsData.GetBucketSizeByUpgradeLevel( 0 );
+        currentSave.lineLevel = 0;
         currentSave.lineCurrent = 0;
-        currentSave.lineMax = 2;
+        currentSave.lineMax = GamePresetsData.GetLineLimitByUpgradeLevel( 0 );
         currentSave.currentBucketFishes = new List<FishSaveData>();
-        SaveGame.Save<GameSave>( "save_0", currentSave );
+        //SaveGame.Save<GameSave>( "save_0", currentSave );
     }
 
 
-    [Button("Save Game")]
-    public void SaveState()
+    [Button( "Save Game" )]
+    public void SaveState ()
     {
         currentSave = new GameSave();
         currentSave.coins = PlayerCoins;
+        currentSave.bucketLevel = BucketLevel;
         currentSave.bucketCurrent = BucketCurrent;
         currentSave.bucketMax = BucketMax;
-        currentSave.lineUpgradeLevel = LineLevel;
+        currentSave.lineLevel = LineLevel;
         currentSave.lineCurrent = LineCurrent;
         currentSave.lineMax = LineMax;
         currentSave.currentBucketFishes = FishesToSaveData( FindObjectOfType<Bucket>().Fishes );
         SaveGame.Save<GameSave>( "save_0", currentSave );
     }
 
-    [Button("Load Save")]
-    public void LoadSave()
+    [Button( "Load Save" )]
+    public void LoadSave ()
     {
         currentSave = SaveGame.Load<GameSave>( "save_0" );
         watchableCoins.Value = currentSave.coins;
+        watchableBucketLevel.Value = currentSave.bucketLevel;
         watchableBucketcurrent.Value = currentSave.bucketCurrent;
         watchableBucketMax.Value = currentSave.bucketMax;
-        watchableLineLevel.Value = currentSave.lineUpgradeLevel;
+        watchableLineLevel.Value = currentSave.lineLevel;
         watchableLineCurrent.Value = currentSave.lineCurrent;
         watchableLineMax.Value = currentSave.lineMax;
         FindObjectOfType<Bucket>().Fishes = DataManager.FishSaveDataToFish( currentSave.currentBucketFishes );
@@ -74,7 +77,7 @@ public class DataManager : MonoBehaviour
         return fishDataList;
     }
 
-    public static List<Fish> FishSaveDataToFish(List<FishSaveData> fishesSaveData)
+    public static List<Fish> FishSaveDataToFish (List<FishSaveData> fishesSaveData)
     {
         //TODO: This is all hardcoded by types. Foreach new fish type this is chaning
         //      improve this later
@@ -82,13 +85,13 @@ public class DataManager : MonoBehaviour
         foreach (FishSaveData fishSaveData in fishesSaveData)
         {
             GameObject fishGameObject = Utils.GetPrefabByName<GameObject>( fishSaveData.typeName );
-            Fish newFish = Instantiate( fishGameObject, new Vector3(0, 100, 0), Quaternion.identity ).GetComponent<Fish>();
+            Fish newFish = Instantiate( fishGameObject, new Vector3( 0, 100, 0 ), Quaternion.identity ).GetComponent<Fish>();
             fishes.Add( newFish );
             //if (fishSaveData.typeName == "Tuna")
             //{
-                
-                
-                
+
+
+
             //} else
             //{
             //    Debug.LogError( "Please add to DataManager.FishSaveDataToFish() an implementation for fish of type: " + fishSaveData.typeName );
@@ -101,6 +104,12 @@ public class DataManager : MonoBehaviour
     {
         get { return watchableCoins.Value; }
         set { watchableCoins.Value = value; }
+    }
+
+    public int BucketLevel
+    {
+        get { return watchableBucketLevel.Value; }
+        set { watchableBucketLevel.Value = value; }
     }
 
     public int BucketCurrent

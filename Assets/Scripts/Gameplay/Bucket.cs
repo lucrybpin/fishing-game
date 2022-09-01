@@ -6,7 +6,7 @@ public class Bucket : MonoBehaviour
     [SerializeField] WatchableInt currentSize;
     [SerializeField] WatchableInt maxSize;
 
-    [SerializeField] [Range(1, 100)] int bucketMaxSize;
+    //[SerializeField] [Range(1, 100)] int bucketMaxSize;
     [SerializeField] List<Fish> fishes = new List<Fish>();
     [SerializeField] Transform fishStackPosition;
 
@@ -29,13 +29,12 @@ public class Bucket : MonoBehaviour
     private void SyncWatchables ()
     {
         currentSize.Value = fishes.Count;
-        maxSize.Value = bucketMaxSize;
     }
 
     public bool IsFull()
     {
         //fishesList.Value.Count
-        return fishes.Count >= bucketMaxSize;
+        return fishes.Count >= maxSize.Value;
     }
 
     public void Clear()

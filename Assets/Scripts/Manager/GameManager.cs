@@ -53,4 +53,15 @@ public class GameManager : MonoBehaviour {
         dataManager.LineLevel = newLevel;
         dataManager.LineMax = GamePresetsData.GetLineLimitByUpgradeLevel( newLevel );
     }
+
+    public void SetBucketLevel (int newLevel)
+    {
+        if (newLevel < 0)
+        {
+            Debug.Log( "Trying to set negative line level" );
+            return;
+        }
+        dataManager.BucketLevel = newLevel;
+        dataManager.BucketMax = GamePresetsData.GetBucketSizeByUpgradeLevel( newLevel );
+    }
 }
