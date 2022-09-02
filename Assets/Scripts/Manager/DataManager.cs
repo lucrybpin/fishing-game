@@ -12,6 +12,8 @@ public class DataManager : MonoBehaviour {
     [SerializeField] WatchableInt watchableBucketcurrent;
     [SerializeField] WatchableInt watchableBucketMax;
     [SerializeField] WatchableInt watchableLineLevel;
+    [SerializeField] WatchableInt watchableSinkSpeedLevel;
+    [SerializeField] WatchableFloat watchableSinkSpeed;
     [SerializeField] WatchableFloat watchableLineCurrent;
     [SerializeField] WatchableFloat watchableLineMax;
 
@@ -31,8 +33,10 @@ public class DataManager : MonoBehaviour {
         currentSave.lineLevel = 0;
         currentSave.lineCurrent = 0;
         currentSave.lineMax = GamePresetsData.GetLineLimitByUpgradeLevel( 0 );
+        currentSave.sinkSpeedLevel = 0;
+        currentSave.sinkSpeed = GamePresetsData.GetSinkSpeedByUpgradeLevel( 0 );
         currentSave.currentBucketFishes = new List<FishSaveData>();
-        //SaveGame.Save<GameSave>( "save_0", currentSave );
+        SaveGame.Save<GameSave>( "save_0", currentSave );
     }
 
 
@@ -47,6 +51,8 @@ public class DataManager : MonoBehaviour {
         currentSave.lineLevel = LineLevel;
         currentSave.lineCurrent = LineCurrent;
         currentSave.lineMax = LineMax;
+        currentSave.sinkSpeedLevel = SinkSpeedLevel;
+        currentSave.sinkSpeed = SinkSpeed;
         currentSave.currentBucketFishes = FishesToSaveData( FindObjectOfType<Bucket>().Fishes );
         SaveGame.Save<GameSave>( "save_0", currentSave );
     }
@@ -62,6 +68,8 @@ public class DataManager : MonoBehaviour {
         watchableLineLevel.Value = currentSave.lineLevel;
         watchableLineCurrent.Value = currentSave.lineCurrent;
         watchableLineMax.Value = currentSave.lineMax;
+        watchableSinkSpeedLevel.Value = currentSave.sinkSpeedLevel;
+        watchableSinkSpeed.Value = currentSave.sinkSpeed;
         FindObjectOfType<Bucket>().Fishes = DataManager.FishSaveDataToFish( currentSave.currentBucketFishes );
     }
 
@@ -128,6 +136,18 @@ public class DataManager : MonoBehaviour {
     {
         get { return watchableLineLevel.Value; }
         set { watchableLineLevel.Value = value; }
+    }
+
+    public int SinkSpeedLevel
+    {
+        get { return watchableSinkSpeedLevel.Value; }
+        set { watchableSinkSpeedLevel.Value = value; }
+    }
+
+    public float SinkSpeed
+    {
+        get { return watchableSinkSpeed.Value; }
+        set { watchableSinkSpeed.Value = value; }
     }
 
     public float LineCurrent

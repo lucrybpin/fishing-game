@@ -64,4 +64,15 @@ public class GameManager : MonoBehaviour {
         dataManager.BucketLevel = newLevel;
         dataManager.BucketMax = GamePresetsData.GetBucketSizeByUpgradeLevel( newLevel );
     }
+
+    public void SetSinkSpeedLevel (int newLevel)
+    {
+        if (newLevel < 0)
+        {
+            Debug.Log( "Trying to set negative line level" );
+            return;
+        }
+        dataManager.SinkSpeedLevel = newLevel;
+        dataManager.SinkSpeed = GamePresetsData.GetSinkSpeedByUpgradeLevel( newLevel );
+    }
 }

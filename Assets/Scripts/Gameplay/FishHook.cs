@@ -8,13 +8,14 @@ public class FishHook : MonoBehaviour {
     [SerializeField] Bucket bucket;
     [SerializeField] Fish fish;
 
-    [SerializeField] [Range( 0.52f, 3f )] float downSpeed = .52f;
+    //[SerializeField] [Range( 0.25f, 3f )] float downSpeed = .52f;
     [SerializeField] [Range(2f, 7f)] float upSpeed = 2f;
     float verticalSpeed;
     [SerializeField] float fishiReleaseLevel = 1.25f;
 
     [SerializeField] WatchableFloat lineCurrent;
     [SerializeField] WatchableFloat lineMax;
+    [SerializeField] WatchableFloat sinkSpeed;
 
     GameManager gameManager;
 
@@ -34,7 +35,7 @@ public class FishHook : MonoBehaviour {
             verticalSpeed = -upSpeed;
 
         if (( Input.GetKey( KeyCode.DownArrow ) || Input.GetKey( KeyCode.S ) ) && transform.position.y > -lineMax.Value)
-            verticalSpeed = downSpeed;
+            verticalSpeed = sinkSpeed.Value;
 
         if (IsAtReleaseLevel())
             ReleaseFish();

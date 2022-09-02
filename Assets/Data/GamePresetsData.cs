@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public static class GamePresetsData
 {
@@ -11,12 +8,52 @@ public static class GamePresetsData
     static Dictionary<int, int> bucketsUpgradesSizes = new Dictionary<int, int>();
     static Dictionary<int, int> bucketsUpgradesPrices = new Dictionary<int, int>();
 
+    static Dictionary<int, float> sinkSpeedLimits = new Dictionary<int, float>();
+    static Dictionary<int, int> sinkSpeedPrices = new Dictionary<int, int>();
+
     public static void Setup()
     {
         FillBucketUpgradeSizes();
         FillBucketUpgradePrices();
         FillLineUpgradeLimits();
         FillLineUpgradePrices();
+        FillSinkSpeedLimits();
+        FillSinkSpeedPrices();
+    }
+
+    
+
+    private static void FillSinkSpeedLimits ()
+    {
+        sinkSpeedLimits.Add( 0, .25f );
+        sinkSpeedLimits.Add( 1, .52f );
+        sinkSpeedLimits.Add( 2, .7f );
+        sinkSpeedLimits.Add( 3, 1f );
+        sinkSpeedLimits.Add( 5, 1.5f );
+        sinkSpeedLimits.Add( 6, 1.7f );
+        sinkSpeedLimits.Add( 7, 2 );
+        sinkSpeedLimits.Add( 8, 2.5f );
+        sinkSpeedLimits.Add( 9, 3f );
+        sinkSpeedLimits.Add( 10, 3.52f );
+        sinkSpeedLimits.Add( 11, 3f );
+        sinkSpeedLimits.Add( 12, 4f );
+    }
+
+    private static void FillSinkSpeedPrices ()
+    {
+        sinkSpeedPrices.Add( 0, 0 );
+        sinkSpeedPrices.Add( 1, 10 );
+        sinkSpeedPrices.Add( 2, 60 );
+        sinkSpeedPrices.Add( 3, 100 );
+        sinkSpeedPrices.Add( 4, 250 );
+        sinkSpeedPrices.Add( 5, 370 );
+        sinkSpeedPrices.Add( 6, 520 );
+        sinkSpeedPrices.Add( 7, 700 );
+        sinkSpeedPrices.Add( 8, 1000 );
+        sinkSpeedPrices.Add( 9, 4000 );
+        sinkSpeedPrices.Add( 10, 7000 );
+        sinkSpeedPrices.Add( 11, 14000 );
+        sinkSpeedPrices.Add( 12, 21000 );
     }
 
     private static void FillLineUpgradeLimits ()
@@ -115,6 +152,22 @@ public static class GamePresetsData
     {
         int cost = -1;
         if (linesUpgradesPrices.TryGetValue( upgradeLevel, out int value ))
+            cost = value;
+        return cost;
+    }
+
+    public static float GetSinkSpeedByUpgradeLevel (int upgradeLevel)
+    {
+        float limit = -1;
+        if (sinkSpeedLimits.TryGetValue( upgradeLevel, out float value ))
+            limit = value;
+        return limit;
+    }
+
+    public static int GetSinkPriceByUpgradeLevel (int upgradeLevel)
+    {
+        int cost = -1;
+        if (sinkSpeedPrices.TryGetValue( upgradeLevel, out int value ))
             cost = value;
         return cost;
     }

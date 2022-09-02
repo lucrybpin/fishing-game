@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0867b1161d52c854c9bbd8d621edad1d, type: 3}
-  m_Name: Coin
+  m_Script: {fileID: 11500000, guid: b9d8c2349743ab04bae2be871a9e5c8f, type: 3}
+  m_Name: SinkSpeed
   m_EditorClassIdentifier: 
-  Value: 14
+  Value: 0
