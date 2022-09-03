@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public static class GamePresetsData
@@ -11,6 +12,9 @@ public static class GamePresetsData
     static Dictionary<int, float> sinkSpeedLimits = new Dictionary<int, float>();
     static Dictionary<int, int> sinkSpeedPrices = new Dictionary<int, int>();
 
+    static Dictionary<int, float> floatSpeedLimits = new Dictionary<int, float>();
+    static Dictionary<int, int> floatSpeedPrices = new Dictionary<int, int>();
+
     public static void Setup()
     {
         FillBucketUpgradeSizes();
@@ -19,9 +23,9 @@ public static class GamePresetsData
         FillLineUpgradePrices();
         FillSinkSpeedLimits();
         FillSinkSpeedPrices();
+        FillFloatSpeedLimits();
+        FillFloatSpeedPrices();
     }
-
-    
 
     private static void FillSinkSpeedLimits ()
     {
@@ -54,6 +58,40 @@ public static class GamePresetsData
         sinkSpeedPrices.Add( 10, 7000 );
         sinkSpeedPrices.Add( 11, 14000 );
         sinkSpeedPrices.Add( 12, 21000 );
+    }
+
+    private static void FillFloatSpeedLimits ()
+    {
+        floatSpeedLimits.Add( 0, 2.00f );
+        floatSpeedLimits.Add( 1, 2.50f );
+        floatSpeedLimits.Add( 2, 2.70f );
+        floatSpeedLimits.Add( 3, 3.00f );
+        floatSpeedLimits.Add( 4, 3.50f );
+        floatSpeedLimits.Add( 5, 3.70f );
+        floatSpeedLimits.Add( 6, 4.00f );
+        floatSpeedLimits.Add( 7, 4.25f );
+        floatSpeedLimits.Add( 8, 4.50f );
+        floatSpeedLimits.Add( 9, 5.00f );
+        floatSpeedLimits.Add( 10, 5.5f );
+        floatSpeedLimits.Add( 11, 6.0f );
+        floatSpeedLimits.Add( 12, 7.0f );
+    }
+
+    private static void FillFloatSpeedPrices ()
+    {
+        floatSpeedPrices.Add( 0, 0 );
+        floatSpeedPrices.Add( 1, 10 );
+        floatSpeedPrices.Add( 2, 60 );
+        floatSpeedPrices.Add( 3, 100 );
+        floatSpeedPrices.Add( 4, 250 );
+        floatSpeedPrices.Add( 5, 370 );
+        floatSpeedPrices.Add( 6, 520 );
+        floatSpeedPrices.Add( 7, 700 );
+        floatSpeedPrices.Add( 8, 1000 );
+        floatSpeedPrices.Add( 9, 4000 );
+        floatSpeedPrices.Add( 10, 7000 );
+        floatSpeedPrices.Add( 11, 14000 );
+        floatSpeedPrices.Add( 12, 21000 );
     }
 
     private static void FillLineUpgradeLimits ()
@@ -168,6 +206,22 @@ public static class GamePresetsData
     {
         int cost = -1;
         if (sinkSpeedPrices.TryGetValue( upgradeLevel, out int value ))
+            cost = value;
+        return cost;
+    }
+
+    public static float GetFloatSpeedByUpgradeLevel (int upgradeLevel)
+    {
+        float limit = -1;
+        if (floatSpeedLimits.TryGetValue( upgradeLevel, out float value ))
+            limit = value;
+        return limit;
+    }
+
+    public static int GetFloatSpeedPriceByUpgradeLevel (int upgradeLevel)
+    {
+        int cost = -1;
+        if (floatSpeedPrices.TryGetValue( upgradeLevel, out int value ))
             cost = value;
         return cost;
     }

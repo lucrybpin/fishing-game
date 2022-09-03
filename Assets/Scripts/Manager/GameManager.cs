@@ -75,4 +75,15 @@ public class GameManager : MonoBehaviour {
         dataManager.SinkSpeedLevel = newLevel;
         dataManager.SinkSpeed = GamePresetsData.GetSinkSpeedByUpgradeLevel( newLevel );
     }
+
+    public void SetFloatLevel (int newLevel)
+    {
+        if (newLevel < 0)
+        {
+            Debug.Log( "Trying to set negative line level" );
+            return;
+        }
+        dataManager.FloatSpeedLevel = newLevel;
+        dataManager.FloatSpeed = GamePresetsData.GetFloatSpeedByUpgradeLevel( newLevel );
+    }
 }

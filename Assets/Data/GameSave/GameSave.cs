@@ -11,6 +11,8 @@ public class GameSave {
     public int lineLevel;
     public int sinkSpeedLevel;
     public float sinkSpeed;
+    public int floatLevel;
+    public float floatSpeed;
     public float lineCurrent;
     public float lineMax;
 }
