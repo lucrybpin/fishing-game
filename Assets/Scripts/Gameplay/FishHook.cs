@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class FishHook : MonoBehaviour {
 
-    
     [SerializeField] Bucket bucket;
     [SerializeField] Fish fish;
-
-    //[SerializeField] [Range( 0.25f, 3f )] float downSpeed = .52f;
-    float verticalSpeed;
     [SerializeField] float fishiReleaseLevel = 1.25f;
-
     [SerializeField] WatchableFloat lineCurrent;
     [SerializeField] WatchableFloat lineMax;
     [SerializeField] WatchableFloat sinkSpeed;
     [SerializeField] WatchableFloat floatSpeed;
+
+    float verticalSpeed;
 
     GameManager gameManager;
 
@@ -92,6 +89,7 @@ public class FishHook : MonoBehaviour {
         if (other.gameObject.transform.parent.TryGetComponent( out Fish fish ))
         {
             SetFish( fish );
+            FindObjectOfType<AudioManager>().PlayGameSound( AudioManager.GameSoundEvents.CatchFish );
         }
     }
 }

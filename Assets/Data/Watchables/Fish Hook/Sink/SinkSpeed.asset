@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d8c2349743ab04bae2be871a9e5c8f, type: 3}
   m_Name: SinkSpeed
   m_EditorClassIdentifier: 
-  Value: 0.25
+  Value: 7

@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: ../FMOD Studio/Fishing Game/fishing_game/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637978473434418725
+  lastModified: 637978576331809077
   FileSizes:
   - Name: Desktop
-    Value: 884
+    Value: 956
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -64,13 +64,41 @@ MonoBehaviour:
   - {fileID: 3770684926397698647}
   EditorEvents:
   - {fileID: -8794919032062321784}
+  - {fileID: 2485516776954275823}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3770684926397698647}
   StringsBanks:
   - {fileID: -947771673775832790}
-  cacheTime: 637978473434418725
+  cacheTime: 637978576331809077
   cacheVersion: 131592
+--- !u!114 &2485516776954275823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/436677__kiluaboy__sunset-walk
+  m_EditorClassIdentifier: 
+  Path: event:/436677__kiluaboy__sunset-walk
+  Guid:
+    Data1: 1222305553
+    Data2: 1093441334
+    Data3: -536436079
+    Data4: -2018899550
+  Banks:
+  - {fileID: 3770684926397698647}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 76800
 --- !u!114 &3770684926397698647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,8 +114,8 @@ MonoBehaviour:
   Path: ../FMOD Studio/Fishing Game/fishing_game/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637978473434398795
+  lastModified: 637978576331779163
   FileSizes:
   - Name: Desktop
-    Value: 5312
+    Value: 887904
   Exists: 1

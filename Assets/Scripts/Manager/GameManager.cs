@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     [SerializeField] DataManager dataManager;
+    [SerializeField] AudioManager audioManager;
 
     public DataManager DataManager { get => dataManager; }
+    public AudioManager AudioManager { get => audioManager; }
 
     private void Awake ()
     {
@@ -26,6 +29,20 @@ public class GameManager : MonoBehaviour {
             return;
         }
         dataManager.PlayerCoins = dataManager.PlayerCoins + amount;
+    }
+
+    public async UniTask AddCoinsOverTime (int amount, float time)
+    {
+        float elapsedTime = 0f;
+        int initialCoins = dataManager.PlayerCoins;
+        int finalCoins = initialCoins + amount;
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+            dataManager.PlayerCoins = ( int ) Mathf.Lerp( initialCoins, finalCoins, elapsedTime / time );
+            await UniTask.Yield();
+        }
+        dataManager.PlayerCoins = finalCoins;
     }
 
     public void SubtractCoins (int amount)
