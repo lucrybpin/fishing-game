@@ -45,7 +45,7 @@ public class FishSpawner : MonoBehaviour {
             }
 
             Fish newFish = Instantiate( prefabs [ 0 ], new Vector3( xPosition, UnityEngine.Random.Range( -top, -bottom ), 0 ), Quaternion.identity ).GetComponent<Fish>();
-            newFish.Setup( UnityEngine.Random.Range( .5f, 2f ), rotation );
+            newFish.Setup( UnityEngine.Random.Range( .5f, 1.4f ), rotation );
         }
 
     }

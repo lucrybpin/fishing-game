@@ -13,6 +13,7 @@ public class UIShop : MonoBehaviour {
     private void Start ()
     {
         fishValues.Add( typeof( Tuna ), 1 );
+        fishValues.Add( typeof( Mackerel ), 2 );
         gameManager = FindObjectOfType<GameManager>();
     }
 
