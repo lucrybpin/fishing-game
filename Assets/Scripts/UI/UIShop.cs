@@ -17,6 +17,10 @@ public class UIShop : MonoBehaviour {
         fishValues.Add( typeof( SeaBass ), 4 );
         fishValues.Add( typeof( Salmon ), 8 );
         fishValues.Add( typeof( Barracuda ), 16 );
+        fishValues.Add( typeof( Anglerfish ), 32 );
+        fishValues.Add( typeof( SpiderCrab ), 64 );
+        fishValues.Add( typeof( Turtle ), 128 );
+        fishValues.Add( typeof( Squid ), 128 );
         gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -53,8 +57,6 @@ public class UIShop : MonoBehaviour {
         }
 
     }
-
-
 
     [Button( "Show" )]
     public void Show ()
