@@ -21,6 +21,9 @@ public class UIShop : MonoBehaviour {
         fishValues.Add( typeof( SpiderCrab ), 64 );
         fishValues.Add( typeof( Turtle ), 128 );
         fishValues.Add( typeof( Squid ), 128 );
+        fishValues.Add( typeof( Marlin ), 256 );
+        fishValues.Add( typeof( Stingray ), 256 );
+        fishValues.Add( typeof( Jellyfish ), 256 );
         gameManager = FindObjectOfType<GameManager>();
     }
 
